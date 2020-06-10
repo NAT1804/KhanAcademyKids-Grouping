@@ -1,16 +1,17 @@
-class Scene1 extends Phaser.Scene {
+
+class Scene5 extends Phaser.Scene {
     constructor() {
-        super('mainscreen');
+        super('screen5');
     }
 
     create() {
         this.homeBtn = this.add.image(0, 0, 'home_button').setOrigin(0, 0);
         this.homeBtn.setInteractive({cursor:'pointer'});
         this.homeBtn.on('pointerdown', () => {
-            this.scene.start('startscreen');
+            this.scene.start('screen0');
         })
 
-        this.horse = this.add.image(200, 200, 'horse').setOrigin(0, 0);
+        this.ark = this.add.image(200, 200, 'ark').setOrigin(0, 0);
     }
 
     update() {
