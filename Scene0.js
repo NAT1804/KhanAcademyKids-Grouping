@@ -33,6 +33,7 @@ class Scene0 extends Phaser.Scene {
             frameWidth: 325,
             frameHeight: 55
         });
+        this.load.image('tipsBear', 'assets/images/tips_bear2.png');
 
         // image in screen 1
         this.load.image('horse', 'assets/images/horse2.png');

@@ -8,7 +8,7 @@ var config = {
 		parent: 'game',
 		autoCenter: Phaser.Scale.CENTER_BOTH
 	},
-	backgroundColor: '#fffbe2',
+	backgroundColor: '#fad645',
 	scene: [Scene0, Scene1, Scene2, Scene3, Scene4, Scene5],
 	physics: {
 		default: "arcade",
