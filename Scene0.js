@@ -10,6 +10,18 @@ var sceneConfig = {
 	}
 };
 
+var musicCofig = {
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
+}
+
+var music;
+
 class Scene0 extends Phaser.Scene {
     constructor() {
         super(sceneConfig);
@@ -25,6 +37,27 @@ class Scene0 extends Phaser.Scene {
 		};
         this.load.rexWebFont(configFont);
         
+        // sound 
+        this.load.audio('back_button_sound', 'assets/sounds/back_button.mp3');
+        this.load.audio('item_appear', 'assets/sounds/ItemAppear.mp3');
+        this.load.audio('correct_sound', 'assets/sounds/correct.mp3');
+        this.load.audio('correct_chime_sound', 'assets/sounds/correct_chime.mp3');
+        this.load.audio('music1', 'assets/sounds/music_bingo.mp3');
+        this.load.audio('music2', 'assets/sounds/music_comingroundthemoutain.mp3');
+        this.load.audio('music3', 'assets/sounds/music_downbybay.mp3');
+        this.load.audio('music4', 'assets/sounds/music_headshoulders.mp3');
+        this.load.audio('music5', 'assets/sounds/music_hickorydickory.mp3');
+        this.load.audio('music6', 'assets/sounds/music_ifyouarehappy.mp3');
+        this.load.audio('music7', 'assets/sounds/music_muffinman.mp3');
+        this.load.audio('music8', 'assets/sounds/music_mullberrybush.mp3');
+        this.load.audio('music9', 'assets/sounds/music_mybonnie.mp3');
+        this.load.audio('music10', 'assets/sounds/music_railroad.mp3');
+        this.load.audio('music11', 'assets/sounds/music_sixlittleducks.mp3');
+        this.load.audio('music12', 'assets/sounds/music_skiptomylou.mp3');
+        this.load.audio('music13', 'assets/sounds/music_thisoldman.mp3');
+        this.load.audio('music14', 'assets/sounds/music_threeblindmice.mp3');
+        this.load.audio('music15', 'assets/sounds/music_yankeedoodle.mp3');
+
         // image in start screen
         this.load.image('home_button', 'assets/images/home_button.png');
         this.load.image('car', 'assets/images/car.png');
@@ -78,6 +111,11 @@ class Scene0 extends Phaser.Scene {
         this.horse = this.add.image(window.innerWidth*0.17+210*3, window.innerHeight*0.63, 'horse').setOrigin(0, 0);
         this.penguin = this.add.image(window.innerWidth*0.17+220*4, window.innerHeight*0.63, 'penguin').setOrigin(0, 0);
 
+        // music
+        let rdMusic = Phaser.Math.Between(1, 15);
+        music = this.sound.add('music'+rdMusic);
+        music.play(musicCofig);
+
         // start button
         this.startbutton = this.add.sprite(window.innerWidth*0.407, window.innerHeight*0.542, 'startbutton').setOrigin(0, 0).setInteractive({cursor:'pointer'});
         this.startbutton.on('pointerover', () => {
@@ -96,7 +134,6 @@ class Scene0 extends Phaser.Scene {
             color: '#000000',
             fontFamily: 'PT Sans'
         })
-        
     }
 
 }

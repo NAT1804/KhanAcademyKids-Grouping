@@ -10,6 +10,7 @@ class Scene2 extends Phaser.Scene {
         this.homeBtn.setInteractive({cursor:'pointer'});
         this.homeBtn.on('pointerdown', () => {
             this.scene.start('screen0');
+            music.stop();
         })
 
         this.ratel = this.add.image(200, 200, 'ratel').setOrigin(0, 0);
