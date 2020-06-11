@@ -1,8 +1,16 @@
-var horse = new Array('horse');
-var penguin = new Array('penguin');
-var totalObject = 5;
-var numbersOfHorse;
-var numbersOfPenguin;
+let horse = new Array('horse');
+let posXHorse = [];
+let posYHorse = [];
+let penguin = new Array('penguin');
+let posXPenguin = [];
+let posYPenguin = [];
+let totalObject = 5;
+let numbersOfHorse;
+let numbersOfPenguin;
+let countHorseInStable = 0;
+let countPenguinInIceHouse = 0;
+let shakeHorseEnable = [];
+let shakePenguinEnable = [];
 
 class Scene1 extends Phaser.Scene {
     constructor() {
@@ -31,10 +39,15 @@ class Scene1 extends Phaser.Scene {
         this.shuffle(factor); // Location appears randomly
         for (let i=0 ; i<numbersOfHorse; ++i) {
             horse[i] = this.add.image(window.innerWidth*0.17+220*factor[i], window.innerHeight*0.63, 'horse').setOrigin(0, 0).setScale(0.7).setInteractive({cursor:'pointer'});
-            
+            posXHorse[i] = window.innerWidth*0.17+220*factor[i];
+            posYHorse[i] = window.innerHeight*0.63;
+            shakeHorseEnable[i] = true;
         }
         for (let i=0 ; i<numbersOfPenguin; ++i) {
             penguin[i] = this.add.image(window.innerWidth*0.17+220*factor[i+numbersOfHorse], window.innerHeight*0.63, 'penguin').setOrigin(0, 0).setScale(0.7).setInteractive({cursor:'pointer'});
+            posXPenguin[i] = window.innerWidth*0.17+220*factor[i+numbersOfHorse];
+            posYPenguin[i] = window.innerHeight*0.63;
+            shakePenguinEnable[i] = true;
         }
 
         // tips bear
@@ -72,39 +85,65 @@ class Scene1 extends Phaser.Scene {
 	}
 
     checkResult() {
-        
-        if (this.dragObject.x > window.innerWidth*0.23 && this.dragObject.x < window.innerWidth*0.23+283 && this.dragObject.y > window.innerHeight*0.1 && this.dragObject.y < window.innerHeight*0.1+226) {
-            for (let i=0; i<numbersOfHorse; ++i) {
-                if (this.dragObject == horse[i]) {
-                    console.log('Status : correct');
-                    horse[i].rotation = 0;
+        if (this.dragObject != null) {
+            if (this.dragObject.x > window.innerWidth*0.22 && this.dragObject.x < window.innerWidth*0.22+283 
+                && this.dragObject.y > window.innerHeight*0.08 && this.dragObject.y < window.innerHeight*0.08+226) {
+                for (let i=0; i<numbersOfHorse; ++i) {
+                    if (this.dragObject == horse[i]) {
+                        console.log('Status : correct');
+                        horse[i].setScale(0.45);
+                        horse[i].disableInteractive();
+                        this.dragObject.x = window.innerWidth*0.37 - countHorseInStable*100;
+                        this.dragObject.y = window.innerHeight*0.31;
+                        countHorseInStable++;
+                        shakeHorseEnable[i] = false;
+                    }
+                }
+                for (let i=0; i<numbersOfPenguin; ++i) {
+                    if (this.dragObject == penguin[i]) {
+                        console.log('Status : wrong');
+                    }
+                }
+                console.log('Location : stable');
+            }
+            else if (this.dragObject.x > window.innerWidth*0.55 && this.dragObject.x < window.innerWidth*0.55+286 
+                && this.dragObject.y > window.innerHeight*0.1 && this.dragObject.y < window.innerHeight*0.1+204) {
+                for (let i=0; i<numbersOfPenguin; ++i) {
+                    if (this.dragObject == penguin[i]) {
+                        console.log('Status : correct');
+                        penguin[i].setScale(0.45);
+                        penguin[i].disableInteractive();
+                        this.dragObject.x = window.innerWidth*0.53 + countPenguinInIceHouse*100;
+                        this.dragObject.y = window.innerHeight*0.31;
+                        countPenguinInIceHouse++;
+                        shakePenguinEnable[i] = false;
+                    }
+                }
+                for (let i=0; i<numbersOfHorse; ++i) {
+                    if (this.dragObject == horse[i]) {
+                        console.log('Status : wrong');
+                    }
+                }
+                console.log('Location : ice_house');
+            }
+            else {
+                console.log('Location : nothing');
+                var posX = this.dragObject.x;
+                var posY = this.dragObject.y;
+                for (let i=0; i<numbersOfHorse; ++i) {
+                    if (this.dragObject == horse[i]) {
+                        this.dragObject.x += (posXHorse[i] - posX);
+                        this.dragObject.y += (posYHorse[i] - posY);
+                    }
+                }
+                for (let i=0; i<numbersOfPenguin; ++i) {
+                    if (this.dragObject == penguin[i]) {
+                        this.dragObject.x += (posXPenguin[i] - posX);
+                        this.dragObject.y += (posYPenguin[i] - posY);
+                    }
                 }
             }
-            for (let i=0; i<numbersOfPenguin; ++i) {
-                if (this.dragObject == penguin[i]) {
-                    console.log('Status : wrong');
-                }
-            }
-            console.log('Location : stable');
-        }
-        else if (this.dragObject.x > window.innerWidth*0.88 && this.dragObject.x < window.innerWidth*0.88+286 && this.dragObject.y > window.innerHeight*0.12 && this.dragObject.y < window.innerHeight*0.12+204) {
-            for (let i=0; i<numbersOfPenguin; ++i) {
-                if (this.dragObject == penguin[i]) {
-                    console.log('Status : correct');
-                    penguin[i].rotation = 0;
-                }
-            }
-            for (let i=0; i<numbersOfHorse; ++i) {
-                if (this.dragObject == horse[i]) {
-                    console.log('Status : wrong');
-                }
-            }
-            console.log('Location : ice_house');
-        }
-        else {
-            console.log('Location : nothing');
-        }
-        
+        }    
     }
 
     shuffle(array) {
@@ -115,12 +154,46 @@ class Scene1 extends Phaser.Scene {
       }
 
     update() {
+        
         for (let i=0; i<numbersOfHorse; ++i) {
-            horse[i].rotation += ((Math.random()-0.5)/200);
+            if (shakeHorseEnable[i]) {
+                horse[i].rotation += ((Math.random()-0.5)/200);
+            }
         }
         for (let i=0; i<numbersOfPenguin; ++i) {
-            penguin[i].rotation += ((Math.random()-0.5)/200);
+            if (shakePenguinEnable[i]) {
+                penguin[i].rotation += ((Math.random()-0.5)/200);
+            }
         }
+        
+
+        if ((countHorseInStable + countPenguinInIceHouse) == 5) {
+            this.car = this.add.image(window.innerWidth*0.92, window.innerHeight*0.05, 'car').setOrigin(0, 0);
+            this.changeScene = this.time.addEvent({
+                delay: 1000,
+                callback: () => {
+                    this.reset();
+                    this.scene.start('screen2');
+                },
+                loop: false
+            })
+        }
+    }
+
+    reset() {
+        horse = new Array('horse');
+        posXHorse = [];
+        posYHorse = [];
+        penguin = new Array('penguin');
+        posXPenguin = [];
+        posYPenguin = [];
+        totalObject = 5;
+        numbersOfHorse;
+        numbersOfPenguin;
+        countHorseInStable = 0;
+        countPenguinInIceHouse = 0;
+        shakeHorseEnable = [];
+        shakePenguinEnable = [];
     }
 
 }

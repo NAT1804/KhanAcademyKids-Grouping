@@ -27,7 +27,7 @@ class Scene0 extends Phaser.Scene {
         
         // image in start screen
         this.load.image('home_button', 'assets/images/home_button.png');
-        this.load.image('car', 'assets/images/home_button.png');
+        this.load.image('car', 'assets/images/car.png');
         this.load.image('logo', 'assets/images/logo.png');
         this.load.spritesheet('startbutton', 'assets/images/startbutton.png', {
             frameWidth: 325,
@@ -68,23 +68,18 @@ class Scene0 extends Phaser.Scene {
     }
 
     create() {
+        // image in screen
         this.logo = this.add.image(0, 0, 'logo').setOrigin(0, 0);
         this.stable = this.add.image(window.innerWidth*0.22, window.innerHeight*0.1, 'stable').setOrigin(0, 0);
         this.iceHouse = this.add.image(window.innerWidth*0.55, window.innerHeight*0.12, 'ice_house').setOrigin(0, 0);
         for (let i=0 ; i<3; ++i) {
-            this.horse = this.add.image(window.innerWidth*0.17+220*i, window.innerHeight*0.63, 'horse').setOrigin(0, 0);
+            this.penguin = this.add.image(window.innerWidth*0.17+220*i, window.innerHeight*0.63, 'penguin').setOrigin(0, 0);
         }
-        for (let i=0 ; i<2; ++i) {
-            this.penguin = this.add.image(window.innerWidth*0.2+210*(i+3), window.innerHeight*0.63, 'penguin').setOrigin(0, 0);
-        }
+        this.horse = this.add.image(window.innerWidth*0.17+210*3, window.innerHeight*0.63, 'horse').setOrigin(0, 0);
+        this.penguin = this.add.image(window.innerWidth*0.17+220*4, window.innerHeight*0.63, 'penguin').setOrigin(0, 0);
 
+        // start button
         this.startbutton = this.add.sprite(window.innerWidth*0.407, window.innerHeight*0.542, 'startbutton').setOrigin(0, 0).setInteractive({cursor:'pointer'});
-        
-        this.header = this.add.text(window.innerWidth*0.41, window.innerHeight*0.54, 'Follow 2 Rules', {
-            fontSize: 50,
-            color: '#000000',
-            fontFamily: 'PT Sans'
-        })
         this.startbutton.on('pointerover', () => {
             this.startbutton.setFrame(1);
         })
@@ -94,6 +89,14 @@ class Scene0 extends Phaser.Scene {
         this.startbutton.on('pointerdown', () => {
             this.scene.start('screen1');
         })
+
+        // header
+        this.header = this.add.text(window.innerWidth*0.41, window.innerHeight*0.54, 'Follow 2 Rules', {
+            fontSize: 50,
+            color: '#000000',
+            fontFamily: 'PT Sans'
+        })
+        
     }
 
 }
