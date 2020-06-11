@@ -37,7 +37,13 @@ class Scene1 extends Phaser.Scene {
             penguin[i] = this.add.image(window.innerWidth*0.17+220*factor[i+numbersOfHorse], window.innerHeight*0.63, 'penguin').setOrigin(0, 0).setScale(0.7).setInteractive({cursor:'pointer'});
         }
 
-        
+        // tips bear
+        var graphics = this.add.graphics();
+        graphics.fillStyle(0xffffff, 1);
+        graphics.fillCircle(window.innerWidth-20, window.innerHeight-20, 250);
+        graphics.lineStyle(4, 0xf6f2d3, 1);
+        graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
+        this.tipsBear = this.add.image(window.innerWidth-120, window.innerHeight-185, 'tipsBear');
 
         // drag object
 		this.input.on('pointerdown', this.startDrag, this);

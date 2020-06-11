@@ -14,7 +14,12 @@ class Scene4 extends Phaser.Scene {
 
         this.tent = this.add.image(200, 200, 'tent').setOrigin(0, 0);
 
-        
+        var graphics = this.add.graphics();
+        graphics.fillStyle(0xffffff, 1);
+        graphics.fillCircle(window.innerWidth-20, window.innerHeight-20, 250);
+        graphics.lineStyle(3, 0xf6f2d3, 1);
+        graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
+        this.tipsBear = this.add.image(window.innerWidth-120, window.innerHeight-190, 'tipsBear');
 
         // drag object
 		this.input.on('pointerdown', this.startDrag, this);

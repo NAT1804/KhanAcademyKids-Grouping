@@ -77,14 +77,6 @@ class Scene0 extends Phaser.Scene {
         for (let i=0 ; i<2; ++i) {
             this.penguin = this.add.image(window.innerWidth*0.2+210*(i+3), window.innerHeight*0.63, 'penguin').setOrigin(0, 0);
         }
-        // this.header = this.add.text(window.innerWidth*0.4, window.innerHeight*0.54, 'Follow 2 Rules', {
-        //     fontSize: 50,
-        //     color: '#000000',
-        //     fontFamily: 'PT Sans'
-        // })
-        // var graphics = this.add.graphics();
-        // graphics.fillStyle('#1db9d7', 0.7);
-        // graphics.fillRect(window.innerWidth*0.4, window.innerHeight*0.54, 317, 50);
 
         this.startbutton = this.add.sprite(window.innerWidth*0.407, window.innerHeight*0.542, 'startbutton').setOrigin(0, 0).setInteractive({cursor:'pointer'});
         
