@@ -14,10 +14,10 @@ class Scene6 extends Phaser.Scene {
             this.scene.start('screen0');
         })
 
-        this.byeText = this.add.text(window.innerWidth*0.4, window.innerHeight*0.5, 'You are welcome!', {
+        this.byeText = this.add.text(window.innerWidth*0.27, window.innerHeight*0.45, 'You have completed the exercise!', {
             fontSize: 50,
             color: '#000000',
-            // fontFamily: 'PT Sans'
+            fontFamily: 'PT Sans'
         })
     }
 }

@@ -42,7 +42,12 @@ class Scene1 extends Phaser.Scene {
 		this.correctSound = this.sound.add('correct_sound');
 		this.correctChimeSound = this.sound.add('correct_chime_sound');
 		this.incorrectSound = this.sound.add('incorrect_sound');
-		this.primarySound = this.sound.add('primary1');
+		this.audioRequest = this.sound.add('audio_request1');
+		this.awesomeSound = this.sound.add('awesome');
+		this.goodJobSound = this.sound.add('goodjob');
+		this.greatJobSound = this.sound.add('greatjob');
+		this.tryAgainSound = this.sound.add('tryagain');
+		this.oppsSound = this.sound.add('oopsSound');
 
 		// object
 		numbersOfHorse = Phaser.Math.Between(1,totalObject-1);
@@ -75,6 +80,9 @@ class Scene1 extends Phaser.Scene {
 		graphics.lineStyle(4, 0xf6f2d3, 1);
 		graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
 		this.tipsBear = this.add.image(window.innerWidth-120, window.innerHeight-185, 'tipsBear');
+
+		// audio request
+		this.audioRequest.play();
 
 		// drag object
 		this.input.on('pointerdown', this.startDrag, this);
@@ -137,7 +145,21 @@ class Scene1 extends Phaser.Scene {
 						this.dragObject.x += (posXPenguin[i] - posX);
 						this.dragObject.y += (posYPenguin[i] - posY);
 						this.incorrectSound.play();
-						this.primarySound.play();
+						let rdWrongSound = Phaser.Math.Between(0, 1);
+						switch(rdWrongSound) {
+							case 0:
+								this.oppsSound.play();
+								break;
+							case 1:
+								this.tryAgainSound.play();
+								break;
+						}
+						this.time.addEvent({
+							delay: 1000,
+							callback: () => {
+								this.audioRequest.play();
+							}
+						})
 					}
 				}
 				console.log('Location : stable');
@@ -175,7 +197,21 @@ class Scene1 extends Phaser.Scene {
 						this.dragObject.x += (posXHorse[i] - posX);
 						this.dragObject.y += (posYHorse[i] - posY);
 						this.incorrectSound.play();
-						this.primarySound.play();
+						let rdWrongSound = Phaser.Math.Between(0, 1);
+						switch(rdWrongSound) {
+							case 0:
+								this.oppsSound.play();
+								break;
+							case 1:
+								this.tryAgainSound.play();
+								break;
+						}
+						this.time.addEvent({
+							delay: 1000,
+							callback: () => {
+								this.audioRequest.play();
+							}
+						})
 					}
 				}
 				console.log('Location : ice_house');
@@ -230,6 +266,18 @@ class Scene1 extends Phaser.Scene {
 	checkFinish() {
 		if ((countHorseInStable + countPenguinInIceHouse) == 5) {
 			this.correctChimeSound.play();
+			let rdCorrectSound = Phaser.Math.Between(0, 2);
+			switch(rdCorrectSound) {
+				case 0: 
+					this.awesomeSound.play();
+					break;
+				case 1:
+					this.goodJobSound.play();
+					break;
+				case 2:
+					this.greatJobSound.play();
+					break;
+			}
 			this.car = this.add.image(window.innerWidth*0.92, window.innerHeight*0.05, 'car').setOrigin(0, 0);
 			this.changeScene = this.time.addEvent({
 				delay: 2500,

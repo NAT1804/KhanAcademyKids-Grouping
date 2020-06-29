@@ -49,7 +49,7 @@ class Scene0 extends Phaser.Scene {
         this.header = this.add.text(window.innerWidth*0.41, window.innerHeight*0.54, 'Follow 2 Rules', {
             fontSize: 50,
             color: '#000000',
-            //fontFamily: 'PT Sans'
+            fontFamily: 'PT Sans'
         })
     }
 

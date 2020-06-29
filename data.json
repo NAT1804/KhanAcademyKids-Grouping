@@ -1,0 +1,291 @@
+{
+    "test1": {
+        "files": [
+            {
+                "type": "image",
+                "key": "home_button",
+                "url": "assets/images/home_button.png"
+            },
+            {
+                "type": "image",
+                "key": "car",
+                "url": "assets/images/car.png"
+            },
+            {
+                "type": "image",
+                "key": "logo",
+                "url": "assets/images/logo.png"
+            },
+            {
+                "type": "image",
+                "key": "horse",
+                "url": "assets/images/horse2.png"
+            },
+            {
+                "type": "image",
+                "key": "stable",
+                "url": "assets/images/stable.png"
+            },
+            {
+                "type": "image",
+                "key": "penguin",
+                "url": "assets/images/penguin.png"
+            },
+            {
+                "type": "image",
+                "key": "ice_house",
+                "url": "assets/images/ice_house.png"
+            },
+            {
+                "type": "image",
+                "key": "ratel",
+                "url": "assets/images/ratel.png"
+            },
+            {
+                "type": "image",
+                "key": "hen",
+                "url": "assets/images/hen.png"
+            },
+            {
+                "type": "image",
+                "key": "fence",
+                "url": "assets/images/fence.png"
+            },
+            {
+                "type": "image",
+                "key": "basket",
+                "url": "assets/images/basket.png"
+            },
+            {
+                "type": "image",
+                "key": "umbrella",
+                "url": "assets/images/umbrella.png"
+            },
+            {
+                "type": "image",
+                "key": "sea",
+                "url": "assets/images/sea.png"
+            },
+            {
+                "type": "image",
+                "key": "droplets",
+                "url": "assets/images/droplets.png"
+            },
+            {
+                "type": "image",
+                "key": "boat",
+                "url": "assets/images/boat.png"
+            },
+            {
+                "type": "image",
+                "key": "tent",
+                "url": "assets/images/tent.png"
+            },
+            {
+                "type": "image",
+                "key": "tent",
+                "url": "assets/images/tent.png"
+            },
+            {
+                "type": "image",
+                "key": "sand",
+                "url": "assets/images/sand.png"
+            },
+            {
+                "type": "image",
+                "key": "bucket",
+                "url": "assets/images/bucket.png"
+            },
+            {
+                "type": "image",
+                "key": "bear",
+                "url": "assets/images/bear.png"
+            },
+            {
+                "type": "image",
+                "key": "ark",
+                "url": "assets/images/ark.png"
+            },
+            {
+                "type": "image",
+                "key": "coin",
+                "url": "assets/images/coin.png"
+            },
+            {
+                "type": "image",
+                "key": "mailbox",
+                "url": "assets/images/mailbox.png"
+            },
+            {
+                "type": "image",
+                "key": "letters",
+                "url": "assets/images/letters.png"
+            },
+            {
+                "type": "audio",
+                "key": "back_button_sound",
+                "url": "assets/sounds/back_button.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "item_appear",
+                "url": "assets/sounds/ItemAppear.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "correct_sound",
+                "url": "assets/sounds/correct.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "correct_chime_sound",
+                "url": "assets/sounds/correct_chime.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music1",
+                "url": "assets/sounds/music_bingo.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music2",
+                "url": "assets/sounds/music_comingroundthemoutain.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music3",
+                "url": "assets/sounds/music_downbybay.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music4",
+                "url": "assets/sounds/music_headshoulders.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music5",
+                "url": "assets/sounds/music_hickorydickory.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music6",
+                "url": "assets/sounds/music_ifyouarehappy.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music7",
+                "url": "assets/sounds/music_muffinman.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music8",
+                "url": "assets/sounds/music_mullberrybush.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music9",
+                "url": "assets/sounds/music_mybonnie.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music10",
+                "url": "assets/sounds/music_railroad.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music11",
+                "url": "assets/sounds/music_sixlittleducks.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music12",
+                "url": "assets/sounds/music_skiptomylou.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music13",
+                "url": "assets/sounds/music_thisoldman.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music14",
+                "url": "assets/sounds/music_threeblindmice.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "music15",
+                "url": "assets/sounds/music_yankeedoodle.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "incorrect_sound",
+                "url": "assets/sounds/incorrect.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "user_select",
+                "url": "assets/sounds/user_select.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "oopsSound",
+                "url": "assets/sounds/oopsSound.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "audio_request1",
+                "url": "assets/sounds/audio_request1.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "audio_request2",
+                "url": "assets/sounds/audio_request2.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "audio_request3",
+                "url": "assets/sounds/audio_request3.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "audio_request4",
+                "url": "assets/sounds/audio_request4.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "audio_request5",
+                "url": "assets/sounds/audio_request5.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "goodjob",
+                "url": "assets/sounds/goodjob.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "greatjob",
+                "url": "assets/sounds/greatjob.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "awesome",
+                "url": "assets/sounds/awesome.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "tryagain",
+                "url": "assets/sounds/tryagain.mp3"
+            },
+            {
+                "type": "spritesheet",
+                "key": "startbutton",
+                "url": "assets/images/startbutton.png",
+                "frameConfig": {
+                    "frameWidth": 325, 
+                    "frameHeight": 55,
+                    "endFrame": 2
+                }
+            }
+        ]
+    }
+}
