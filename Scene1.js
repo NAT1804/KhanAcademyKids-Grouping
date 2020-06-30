@@ -61,7 +61,6 @@ class Scene1 extends Phaser.Scene {
 			posYHorse[i] = window.innerHeight*0.63;
 			shakeHorseEnable[i] = true;
 			spinHorseEnable[i] = false;
-			//this.appearSound.play();
 		}
 
 		for (let i=0 ; i<numbersOfPenguin; ++i) {
@@ -70,7 +69,6 @@ class Scene1 extends Phaser.Scene {
 			posYPenguin[i] = window.innerHeight*0.63;
 			shakePenguinEnable[i] = true;
 			spinPenguinEnable[i] = false;
-			//this.appearSound.play();
 		}
 		
 		// tips bear
@@ -79,7 +77,26 @@ class Scene1 extends Phaser.Scene {
 		graphics.fillCircle(window.innerWidth-20, window.innerHeight-20, 250);
 		graphics.lineStyle(4, 0xf6f2d3, 1);
 		graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
-		this.tipsBear = this.add.image(window.innerWidth-120, window.innerHeight-185, 'tipsBear');
+		this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-185, 'tipsBear');
+		this.anims.create({
+			key: 'talk',
+			frames: this.anims.generateFrameNumbers('beartalk'),
+			frameRate: 3,
+			repeat: 0
+		})
+		this.anims.create({
+			key: 'right',
+			frames: this.anims.generateFrameNumbers('bearright'),
+			frameRate: 4,
+			repeat: 0
+		})
+		this.anims.create({
+			key: 'wrong',
+			frames: this.anims.generateFrameNumbers('bearwrong'),
+			frameRate: 4,
+			repeat: 0
+		})
+		this.tipsBear = this.add.sprite(window.innerWidth-120, window.innerHeight-185, 'beartalk').play('talk');
 
 		// audio request
 		this.audioRequest.play();
@@ -122,16 +139,21 @@ class Scene1 extends Phaser.Scene {
 						if (i % 2 == 0) {
 							spinHorseEnable[i] = true;
 						}
+						this.tweens.add({
+							targets: this.dragObject,
+							x: window.innerWidth*0.38 - countHorseInStable*100,
+							y: window.innerHeight*0.31,
+							ease: 'Power0',
+							duration: 500
+						})
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								this.dragObject.x = window.innerWidth*0.43 - countHorseInStable*100;
-								this.dragObject.y = window.innerHeight*0.31;
-								spinHorseEnable[i] = false;
-								
+								spinHorseEnable[i] = false;	
 							},
 							loop: false
 						})
+						this.tipsBear.play('right');
 						countHorseInStable++;
 						shakeHorseEnable[i] = false;
 						this.correctSound.play();
@@ -142,8 +164,13 @@ class Scene1 extends Phaser.Scene {
 						console.log('Status : wrong');
 						var posX = this.dragObject.x;
 						var posY = this.dragObject.y;
-						this.dragObject.x += (posXPenguin[i] - posX);
-						this.dragObject.y += (posYPenguin[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXPenguin[i] - posX),
+							y: this.dragObject.y + (posYPenguin[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -154,9 +181,11 @@ class Scene1 extends Phaser.Scene {
 								this.tryAgainSound.play();
 								break;
 						}
+						this.tipsBear.play('wrong');
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})
@@ -174,16 +203,21 @@ class Scene1 extends Phaser.Scene {
 						if (i % 2 == 0) {
 							spinPenguinEnable[i] = true;
 						}
+						this.tweens.add({
+							targets: this.dragObject,
+							x: window.innerWidth*0.52 + countPenguinInIceHouse*100,
+							y: window.innerHeight*0.31,
+							ease: 'Power0',
+							duration: 500
+						})
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								this.dragObject.x = window.innerWidth*0.47 + countPenguinInIceHouse*100;
-								this.dragObject.y = window.innerHeight*0.31;
-								spinPenguinEnable[i] = false;
-								
+								spinPenguinEnable[i] = false;	
 							},
 							loop: false
 						})
+						this.tipsBear.play('right');
 						countPenguinInIceHouse++;
 						shakePenguinEnable[i] = false;
 						this.correctSound.play();
@@ -194,8 +228,13 @@ class Scene1 extends Phaser.Scene {
 						console.log('Status : wrong');
 						var posX = this.dragObject.x;
 						var posY = this.dragObject.y;
-						this.dragObject.x += (posXHorse[i] - posX);
-						this.dragObject.y += (posYHorse[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXHorse[i] - posX),
+							y: this.dragObject.y + (posYHorse[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -206,9 +245,11 @@ class Scene1 extends Phaser.Scene {
 								this.tryAgainSound.play();
 								break;
 						}
+						this.tipsBear.play('wrong');
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})
@@ -222,14 +263,24 @@ class Scene1 extends Phaser.Scene {
 				var posY = this.dragObject.y;
 				for (let i=0; i<numbersOfHorse; ++i) {
 					if (this.dragObject == horse[i]) {
-						this.dragObject.x += (posXHorse[i] - posX);
-						this.dragObject.y += (posYHorse[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXHorse[i] - posX),
+							y: this.dragObject.y + (posYHorse[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
 					}
 				}
 				for (let i=0; i<numbersOfPenguin; ++i) {
 					if (this.dragObject == penguin[i]) {
-						this.dragObject.x += (posXPenguin[i] - posX);
-						this.dragObject.y += (posYPenguin[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXPenguin[i] - posX),
+							y: this.dragObject.y + (posYPenguin[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
 					}
 				}
 			}
@@ -278,10 +329,28 @@ class Scene1 extends Phaser.Scene {
 					this.greatJobSound.play();
 					break;
 			}
-			this.car = this.add.image(window.innerWidth*0.92, window.innerHeight*0.05, 'car').setOrigin(0, 0);
+			//this.car = this.add.image(window.innerWidth*0.92, window.innerHeight*0.05, 'car').setOrigin(0, 0);
+			this.anims.create({
+				key: 'runcar',
+				frames: this.anims.generateFrameNumbers('car2'),
+				frameRate: 5,
+				repeat: 0
+			})
+			this.car = this.add.sprite(window.innerWidth*0.9, window.innerHeight*0.05, 'car2').setOrigin(0, 0);
+			this.car.play('runcar');
+
+			this.tween = this.tweens.add({
+				targets: this.car,
+				x: window.innerWidth*1.1,
+				ease: 'Power1',
+				delay: 800,
+				duration: 1000
+			})
+
 			this.changeScene = this.time.addEvent({
 				delay: 2500,
 				callback: () => {
+					this.tween.remove();
 					this.reset();
 					this.scene.start('screen2');
 				},

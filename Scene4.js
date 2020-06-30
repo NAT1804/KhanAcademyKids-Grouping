@@ -75,7 +75,26 @@ class Scene4 extends Phaser.Scene {
         graphics.fillCircle(window.innerWidth-20, window.innerHeight-20, 250);
         graphics.lineStyle(3, 0xf6f2d3, 1);
         graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
-        this.tipsBear = this.add.image(window.innerWidth-120, window.innerHeight-190, 'tipsBear');
+		this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-190, 'tipsBear');
+		this.anims.create({
+			key: 'talk',
+			frames: this.anims.generateFrameNumbers('beartalk'),
+			frameRate: 3,
+			repeat: 0
+		})
+		this.anims.create({
+			key: 'right',
+			frames: this.anims.generateFrameNumbers('bearright'),
+			frameRate: 4,
+			repeat: 0
+		})
+		this.anims.create({
+			key: 'wrong',
+			frames: this.anims.generateFrameNumbers('bearwrong'),
+			frameRate: 4,
+			repeat: 0
+		})
+		this.tipsBear = this.add.sprite(window.innerWidth-120, window.innerHeight-185, 'beartalk').play('talk');
 
 		// audio request
 		this.audioRequest.play();
@@ -118,16 +137,24 @@ class Scene4 extends Phaser.Scene {
 						if (i % 2 == 0) {
 							spinBearEnable[i] = true;
 						}
+						this.tweens.add({
+							targets: this.dragObject,
+							x: window.innerWidth*0.42 - countBearInTent*90,
+							y: window.innerHeight*0.33,
+							ease: 'Power0',
+							duration: 500
+						})
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								this.dragObject.x = window.innerWidth*0.47 - countBearInTent*90;
-								this.dragObject.y = window.innerHeight*0.33;
+								// this.dragObject.x = window.innerWidth*0.47 - countBearInTent*90;
+								// this.dragObject.y = window.innerHeight*0.33;
 								spinBearEnable[i] = false;
 								
 							},
 							loop: false
 						})
+						this.tipsBear.play('right');
 						countBearInTent++;
 						shakeBearEnable[i] = false;
 						this.correctSound.play();
@@ -138,8 +165,15 @@ class Scene4 extends Phaser.Scene {
 						console.log('Status : wrong');
 						var posX = this.dragObject.x;
 						var posY = this.dragObject.y;
-						this.dragObject.x += (posXBucket[i] - posX);
-						this.dragObject.y += (posYBucket[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXBucket[i] - posX),
+							y: this.dragObject.y + (posYBucket[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
+						// this.dragObject.x += (posXBucket[i] - posX);
+						// this.dragObject.y += (posYBucket[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -150,6 +184,7 @@ class Scene4 extends Phaser.Scene {
 								this.tryAgainSound.play();
 								break;
 						}
+						this.tipsBear.play('wrong');
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
@@ -170,16 +205,24 @@ class Scene4 extends Phaser.Scene {
 						if (i % 2 == 0) {
 							spinBucketEnable[i] = true;
 						}
+						this.tweens.add({
+							targets: this.dragObject,
+							x: window.innerWidth*0.53 + countBucketInSand*90,
+							y: window.innerHeight*0.35,
+							ease: 'Power0',
+							duration: 500
+						})
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								this.dragObject.x = window.innerWidth*0.49 + countBucketInSand*90;
-								this.dragObject.y = window.innerHeight*0.35;
+								// this.dragObject.x = window.innerWidth*0.49 + countBucketInSand*90;
+								// this.dragObject.y = window.innerHeight*0.35;
 								spinBucketEnable[i] = false;
 								
 							},
 							loop: false
 						})
+						this.tipsBear.play('right');
 						countBucketInSand++;
 						shakeBucketEnable[i] = false;
 						this.correctSound.play();
@@ -190,8 +233,15 @@ class Scene4 extends Phaser.Scene {
 						console.log('Status : wrong');
 						var posX = this.dragObject.x;
 						var posY = this.dragObject.y;
-						this.dragObject.x += (posXBear[i] - posX);
-						this.dragObject.y += (posYBear[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXBear[i] - posX),
+							y: this.dragObject.y + (posYBear[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
+						// this.dragObject.x += (posXBear[i] - posX);
+						// this.dragObject.y += (posYBear[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -202,6 +252,7 @@ class Scene4 extends Phaser.Scene {
 								this.tryAgainSound.play();
 								break;
 						}
+						this.tipsBear.play('wrong');
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
@@ -218,14 +269,24 @@ class Scene4 extends Phaser.Scene {
 				var posY = this.dragObject.y;
 				for (let i=0; i<numbersOfBear; ++i) {
 					if (this.dragObject == bear[i]) {
-						this.dragObject.x += (posXBear[i] - posX);
-						this.dragObject.y += (posYBear[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXBear[i] - posX),
+							y: this.dragObject.y + (posYBear[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
 					}
 				}
 				for (let i=0; i<numbersOfBucket; ++i) {
 					if (this.dragObject == bucket[i]) {
-						this.dragObject.x += (posXBucket[i] - posX);
-						this.dragObject.y += (posYBucket[i] - posY);
+						this.tweens.add({
+							targets: this.dragObject,
+							x: this.dragObject.x + (posXBucket[i] - posX),
+							y: this.dragObject.y + (posYBucket[i] - posY),
+							ease: 'Power0',
+							duration: 1000
+						})
 					}
 				}
 			}
@@ -274,7 +335,22 @@ class Scene4 extends Phaser.Scene {
 					this.greatJobSound.play();
 					break;
 			}
-			this.car = this.add.image(window.innerWidth*0.92, window.innerHeight*0.05, 'car').setOrigin(0, 0);
+			this.anims.create({
+				key: 'runcar',
+				frames: this.anims.generateFrameNumbers('car2'),
+				frameRate: 5,
+				repeat: 0
+			})
+			this.car = this.add.sprite(window.innerWidth*0.9, window.innerHeight*0.05, 'car2').setOrigin(0, 0);
+			this.car.play('runcar');
+
+			this.tween = this.tweens.add({
+				targets: this.car,
+				x: window.innerWidth*1.1,
+				ease: 'Power1',
+				delay: 800,
+				duration: 1000
+			})
 			this.changeScene = this.time.addEvent({
 				delay: 2500,
 				callback: () => {

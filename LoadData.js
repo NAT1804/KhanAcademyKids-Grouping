@@ -26,9 +26,30 @@ class LoadData extends Phaser.Scene {
         this.load.rexWebFont(configFont);
 
         // load data
-        this.load.pack('pack1', 'data.json');
+        this.load.pack('data', 'data.json');
 
-        this.load.image('tipsBear', 'assets/images/tips_bear/tips_bear2.png');
+        // this.load.image('tipsBear', 'assets/images/tips_bear/tips_bear2.png');
+        
+        // this.load.spritesheet('car2', 'assets/images/spritecar.png', {
+        //     frameWidth: 108,
+        //     frameHeight: 84
+        // })
+
+        // this.load.spritesheet('beartalk', 'assets/images/tips_bear/beartalk.png', {
+        //     frameWidth: 200,
+        //     frameHeight: 386
+        // })
+
+        // this.load.spritesheet('bearright', 'assets/images/tips_bear/bearright.png', {
+        //     frameWidth: 200,
+        //     frameHeight: 386
+        // })
+
+        // this.load.spritesheet('bearwrong', 'assets/images/tips_bear/bearwrong.png', {
+        //     frameWidth: 200,
+        //     frameHeight: 386
+        // })
+
     }   
 
     create() {
