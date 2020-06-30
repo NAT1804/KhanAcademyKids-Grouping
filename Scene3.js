@@ -184,6 +184,7 @@ class Scene3 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})
@@ -211,8 +212,7 @@ class Scene3 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								spinBoatEnable[i] = false;
-								
+								spinBoatEnable[i] = false;	
 							},
 							loop: false
 						})
@@ -248,6 +248,7 @@ class Scene3 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})

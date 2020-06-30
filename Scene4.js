@@ -172,8 +172,6 @@ class Scene4 extends Phaser.Scene {
 							ease: 'Power0',
 							duration: 1000
 						})
-						// this.dragObject.x += (posXBucket[i] - posX);
-						// this.dragObject.y += (posYBucket[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -188,6 +186,7 @@ class Scene4 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})
@@ -215,8 +214,7 @@ class Scene4 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								spinBucketEnable[i] = false;
-								
+								spinBucketEnable[i] = false;	
 							},
 							loop: false
 						})
@@ -254,6 +252,7 @@ class Scene4 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})

@@ -149,8 +149,6 @@ class Scene2 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.4 - countHenInBasket*100;
-								// this.dragObject.y = window.innerHeight*0.36;
 								spinHenEnable[i] = false;
 								
 							},
@@ -188,6 +186,7 @@ class Scene2 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})
@@ -215,10 +214,7 @@ class Scene2 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.46 + countRatelInFence*100;
-								// this.dragObject.y = window.innerHeight*0.38;
-								spinRatelEnable[i] = false;
-								
+								spinRatelEnable[i] = false;	
 							},
 							loop: false
 						})
@@ -254,6 +250,7 @@ class Scene2 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})

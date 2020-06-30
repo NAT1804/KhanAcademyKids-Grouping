@@ -147,8 +147,7 @@ class Scene5 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								spinCoinEnable[i] = false;
-								
+								spinCoinEnable[i] = false;	
 							},
 							loop: false
 						})
@@ -184,6 +183,7 @@ class Scene5 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 100,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})
@@ -211,8 +211,7 @@ class Scene5 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								spinLettersEnable[i] = false;
-								
+								spinLettersEnable[i] = false;	
 							},
 							loop: false
 						})
@@ -248,6 +247,7 @@ class Scene5 extends Phaser.Scene {
 						this.time.addEvent({
 							delay: 1000,
 							callback: () => {
+								this.tipsBear.play('talk');
 								this.audioRequest.play();
 							}
 						})
