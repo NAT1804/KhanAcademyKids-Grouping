@@ -147,8 +147,6 @@ class Scene3 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.43 - countDropletsInUmbrella*100;
-								// this.dragObject.y = window.innerHeight*0.33;
 								spinDropletsEnable[i] = false;
 								
 							},
@@ -172,8 +170,6 @@ class Scene3 extends Phaser.Scene {
 							ease: 'Power0',
 							duration: 1000
 						})
-						// this.dragObject.x += (posXBoat[i] - posX);
-						// this.dragObject.y += (posYBoat[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -215,8 +211,6 @@ class Scene3 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.45 + countBoatInSea*110;
-								// this.dragObject.y = window.innerHeight*0.42;
 								spinBoatEnable[i] = false;
 								
 							},
@@ -240,8 +234,6 @@ class Scene3 extends Phaser.Scene {
 							ease: 'Power0',
 							duration: 1000
 						})
-						// this.dragObject.x += (posXDroplets[i] - posX);
-						// this.dragObject.y += (posYDroplets[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {

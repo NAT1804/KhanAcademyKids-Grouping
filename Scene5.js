@@ -147,8 +147,6 @@ class Scene5 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.43 - countCoinInArk*110;
-								// this.dragObject.y = window.innerHeight*0.37;
 								spinCoinEnable[i] = false;
 								
 							},
@@ -172,8 +170,6 @@ class Scene5 extends Phaser.Scene {
 							ease: 'Power0',
 							duration: 1000
 						})
-						// this.dragObject.x += (posXLetters[i] - posX);
-						// this.dragObject.y += (posYLetters[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -215,8 +211,6 @@ class Scene5 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.47 + countLettersInMailbox*110;
-								// this.dragObject.y = window.innerHeight*0.37;
 								spinLettersEnable[i] = false;
 								
 							},
@@ -240,8 +234,6 @@ class Scene5 extends Phaser.Scene {
 							ease: 'Power0',
 							duration: 1000
 						})
-						// this.dragObject.x += (posXCoin[i] - posX);
-						// this.dragObject.y += (posYCoin[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {

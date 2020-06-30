@@ -329,7 +329,6 @@ class Scene1 extends Phaser.Scene {
 					this.greatJobSound.play();
 					break;
 			}
-			//this.car = this.add.image(window.innerWidth*0.92, window.innerHeight*0.05, 'car').setOrigin(0, 0);
 			this.anims.create({
 				key: 'runcar',
 				frames: this.anims.generateFrameNumbers('car2'),

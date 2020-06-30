@@ -215,8 +215,6 @@ class Scene4 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.49 + countBucketInSand*90;
-								// this.dragObject.y = window.innerHeight*0.35;
 								spinBucketEnable[i] = false;
 								
 							},
