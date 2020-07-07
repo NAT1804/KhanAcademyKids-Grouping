@@ -13,6 +13,7 @@ let shakeBearEnable = [];
 let shakeBucketEnable = [];
 let spinBearEnable = [];
 let spinBucketEnable = [];
+// let countObject = 0;
 
 class Scene4 extends Phaser.Scene {
     constructor() {
@@ -139,7 +140,7 @@ class Scene4 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.42 - countBearInTent*90,
+							x: window.innerWidth*0.32 + countBearInTent*90,
 							y: window.innerHeight*0.33,
 							ease: 'Power0',
 							duration: 500
@@ -147,15 +148,14 @@ class Scene4 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								// this.dragObject.x = window.innerWidth*0.47 - countBearInTent*90;
-								// this.dragObject.y = window.innerHeight*0.33;
-								spinBearEnable[i] = false;
-								
+								spinBearEnable[i] = false;	
 							},
 							loop: false
 						})
 						this.tipsBear.play('right');
 						countBearInTent++;
+						if (countBearInTent == 3) countBearInTent = -1;
+						countObject++;
 						shakeBearEnable[i] = false;
 						this.correctSound.play();
 					}
@@ -206,7 +206,7 @@ class Scene4 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.53 + countBucketInSand*90,
+							x: window.innerWidth*0.63 + countBucketInSand*90,
 							y: window.innerHeight*0.35,
 							ease: 'Power0',
 							duration: 500
@@ -220,6 +220,8 @@ class Scene4 extends Phaser.Scene {
 						})
 						this.tipsBear.play('right');
 						countBucketInSand++;
+						if (countBucketInSand == 3) countBucketInSand = -1;
+						countObject ++;
 						shakeBucketEnable[i] = false;
 						this.correctSound.play();
 					}
@@ -236,8 +238,6 @@ class Scene4 extends Phaser.Scene {
 							ease: 'Power0',
 							duration: 1000
 						})
-						// this.dragObject.x += (posXBear[i] - posX);
-						// this.dragObject.y += (posYBear[i] - posY);
 						this.incorrectSound.play();
 						let rdWrongSound = Phaser.Math.Between(0, 1);
 						switch(rdWrongSound) {
@@ -315,13 +315,15 @@ class Scene4 extends Phaser.Scene {
 		shakeBucketEnable = [];
 		spinBearEnable = [];
 		spinBucketEnable = [];
+		countObject = 0;
+		countFault = 0;
 	}
 
 	checkFinish() {
-		if ((countBearInTent + countBucketInSand) == 5) {
+		if (countObject == totalObject) {
 			this.correctChimeSound.play();
 			let rdCorrectSound = Phaser.Math.Between(0, 2);
-			switch(rdCorrectSound) {
+			switch(countFault) {
 				case 0: 
 					this.awesomeSound.play();
 					break;
@@ -345,7 +347,7 @@ class Scene4 extends Phaser.Scene {
 				targets: this.car,
 				x: window.innerWidth*1.1,
 				ease: 'Power1',
-				delay: 800,
+				delay: 500,
 				duration: 1000
 			})
 			this.changeScene = this.time.addEvent({

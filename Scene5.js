@@ -13,6 +13,7 @@ let shakeCoinEnable = [];
 let shakeLettersEnable = [];
 let spinCoinEnable = [];
 let spinLettersEnable = [];
+// let countObject = 0;
 
 class Scene5 extends Phaser.Scene {
     constructor() {
@@ -139,7 +140,7 @@ class Scene5 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.38 - countCoinInArk*110,
+							x: window.innerWidth*0.28 + countCoinInArk*110,
 							y: window.innerHeight*0.37,
 							ease: 'Power0',
 							duration: 500
@@ -153,6 +154,8 @@ class Scene5 extends Phaser.Scene {
 						})
 						this.tipsBear.play('right');
 						countCoinInArk++;
+						if (countCoinInArk == 3) countCoinInArk = -1;
+						countObject++;
 						shakeCoinEnable[i] = false;
 						this.correctSound.play();
 					}
@@ -203,7 +206,7 @@ class Scene5 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.52 + countLettersInMailbox*110,
+							x: window.innerWidth*0.62 + countLettersInMailbox*110,
 							y: window.innerHeight*0.37,
 							ease: 'Power0',
 							duration: 500
@@ -217,6 +220,8 @@ class Scene5 extends Phaser.Scene {
 						})
 						this.tipsBear.play('right');
 						countLettersInMailbox++;
+						if (countLettersInMailbox == 3) countLettersInMailbox = -1;
+						countObject++;
 						shakeLettersEnable[i] = false;
 						this.correctSound.play();
 					}
@@ -310,13 +315,15 @@ class Scene5 extends Phaser.Scene {
 		shakeLettersEnable = [];
 		spinCoinEnable = [];
 		spinLettersEnable = [];
+		countObject = 0;
+		countFault = 0;
 	}
 
 	checkFinish() {
-		if ((countCoinInArk + countLettersInMailbox) == 5) {
+		if (countObject == totalObject) {
 			this.correctChimeSound.play();
 			let rdCorrectSound = Phaser.Math.Between(0, 2);
-			switch(rdCorrectSound) {
+			switch(countFault) {
 				case 0: 
 					this.awesomeSound.play();
 					break;
@@ -340,7 +347,7 @@ class Scene5 extends Phaser.Scene {
 				targets: this.car,
 				x: window.innerWidth*1.1,
 				ease: 'Power1',
-				delay: 800,
+				delay: 500,
 				duration: 1000
 			})
 			this.changeScene = this.time.addEvent({

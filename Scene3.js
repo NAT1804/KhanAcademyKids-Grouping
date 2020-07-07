@@ -13,6 +13,7 @@ let shakeDropletsEnable = [];
 let shakeBoatEnable = [];
 let spinDropletsEnable = [];
 let spinBoatEnable = [];
+// let countObject = 0;
 
 class Scene3 extends Phaser.Scene {
     constructor() {
@@ -20,13 +21,16 @@ class Scene3 extends Phaser.Scene {
     }
 
     create() {
-        this.cameras.main.setBackgroundColor('#fffbe2');
+		// background color
+		this.cameras.main.setBackgroundColor('#fffbe2');
+		
+		// home button
         this.homeBtn = this.add.image(0, 0, 'home_button').setOrigin(0, 0);
         this.soundBack = this.sound.add('back_button_sound');
         this.homeBtn.setInteractive({cursor:'pointer'});
         this.homeBtn.on('pointerdown', () => {
+            this.soundBack.play();
             music.stop();
-            this.tipsBear.soundBack.play();
             this.scene.start('screen0');
         })
 
@@ -139,7 +143,7 @@ class Scene3 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.38 - countDropletsInUmbrella*100,
+							x: window.innerWidth*0.28 + countDropletsInUmbrella*100,
 							y: window.innerHeight*0.33,
 							ease: 'Power0',
 							duration: 500
@@ -154,6 +158,8 @@ class Scene3 extends Phaser.Scene {
 						})
 						this.tipsBear.play('right');
 						countDropletsInUmbrella++;
+						if (countDropletsInUmbrella == 3) countDropletsInUmbrella = -1;
+						countObject++;
 						shakeDropletsEnable[i] = false;
 						this.correctSound.play();
 					}
@@ -204,7 +210,7 @@ class Scene3 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.5 + countBoatInSea*100,
+							x: window.innerWidth*0.6 + countBoatInSea*100,
 							y: window.innerHeight*0.42,
 							ease: 'Power0',
 							duration: 500
@@ -218,6 +224,8 @@ class Scene3 extends Phaser.Scene {
 						})
 						this.tipsBear.play('right');
 						countBoatInSea++;
+						if (countBoatInSea == 3) countBoatInSea = -1;
+						countObject++;
 						shakeBoatEnable[i] = false;
 						this.correctSound.play();
 					}
@@ -311,13 +319,15 @@ class Scene3 extends Phaser.Scene {
 		shakeBoatEnable = [];
 		spinDropletsEnable = [];
 		spinBoatEnable = [];
+		countObject = 0;
+		countFault = 0;
 	}
 
 	checkFinish() {
-		if ((countDropletsInUmbrella + countBoatInSea) == 5) {
+		if (countObject == totalObject) {
 			this.correctChimeSound.play();
 			let rdCorrectSound = Phaser.Math.Between(0, 2);
-			switch(rdCorrectSound) {
+			switch(countFault) {
 				case 0: 
 					this.awesomeSound.play();
 					break;
@@ -341,7 +351,7 @@ class Scene3 extends Phaser.Scene {
 				targets: this.car,
 				x: window.innerWidth*1.1,
 				ease: 'Power1',
-				delay: 800,
+				delay: 500,
 				duration: 1000
 			})
 			this.changeScene = this.time.addEvent({

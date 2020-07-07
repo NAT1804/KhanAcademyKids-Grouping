@@ -13,6 +13,8 @@ let shakeHorseEnable = [];
 let shakePenguinEnable = [];
 let spinHorseEnable = [];
 let spinPenguinEnable = [];
+let countObject = 0;
+let countFault = 0;
 
 class Scene1 extends Phaser.Scene {
 	constructor() {
@@ -36,6 +38,14 @@ class Scene1 extends Phaser.Scene {
 		// 2 group
 		this.stable = this.add.image(window.innerWidth*0.22, window.innerHeight*0.1, 'stable').setOrigin(0, 0).setScale(0.7);
 		this.iceHouse = this.add.image(window.innerWidth*0.55, window.innerHeight*0.12, 'ice_house').setOrigin(0, 0).setScale(0.7);
+
+		var rect1 = new Phaser.Geom.Rectangle(window.innerWidth*0.22, window.innerHeight*0.1, 200, 100);
+		var rect2 = new Phaser.Geom.Rectangle(window.innerWidth*0.55, window.innerHeight*0.12, 200, 100);
+		var graphics = this.add.graphics();
+		graphics.lineStyle(5, 0x000000, 0.8);
+		graphics.strokeRectShape(rect1);
+		graphics.lineStyle(5, 0x000000, 0.8);
+		graphics.strokeRectShape(rect2);
 		
 		//sound
 		this.appearSound = this.sound.add('item_appear');
@@ -141,7 +151,7 @@ class Scene1 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.38 - countHorseInStable*100,
+							x: window.innerWidth*0.25 + countHorseInStable*100,
 							y: window.innerHeight*0.31,
 							ease: 'Power0',
 							duration: 500
@@ -155,6 +165,8 @@ class Scene1 extends Phaser.Scene {
 						})
 						this.tipsBear.play('right');
 						countHorseInStable++;
+						if (countHorseInStable == 3) countHorseInStable = -1;
+						countObject++;
 						shakeHorseEnable[i] = false;
 						this.correctSound.play();
 					}
@@ -189,6 +201,7 @@ class Scene1 extends Phaser.Scene {
 								this.audioRequest.play();
 							}
 						})
+						countFault ++;
 					}
 				}
 				console.log('Location : stable');
@@ -205,7 +218,7 @@ class Scene1 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.52 + countPenguinInIceHouse*100,
+							x: window.innerWidth*0.6 + countPenguinInIceHouse*100,
 							y: window.innerHeight*0.31,
 							ease: 'Power0',
 							duration: 500
@@ -219,11 +232,13 @@ class Scene1 extends Phaser.Scene {
 						})
 						this.tipsBear.play('right');
 						countPenguinInIceHouse++;
+						if (countPenguinInIceHouse == 3) countPenguinInIceHouse = -1;
+						countObject++;
 						shakePenguinEnable[i] = false;
 						this.correctSound.play();
 					}
 				}
-				for (let i=0; i<numbersOfHorse; ++i) {
+				for (let i=0; i<numbersOfHorse; ++i) {``
 					if (this.dragObject == horse[i]) {
 						console.log('Status : wrong');
 						var posX = this.dragObject.x;
@@ -253,6 +268,7 @@ class Scene1 extends Phaser.Scene {
 								this.audioRequest.play();
 							}
 						})
+						countFault++;
 					}
 				}
 				console.log('Location : ice_house');
@@ -312,20 +328,22 @@ class Scene1 extends Phaser.Scene {
 		shakePenguinEnable = [];
 		spinHorseEnable = [];
 		spinPenguinEnable = [];
+		countObject = 0;
+		countFault = 0;
 	}
 
 	checkFinish() {
-		if ((countHorseInStable + countPenguinInIceHouse) == 5) {
+		if (countObject == totalObject) {
 			this.correctChimeSound.play();
-			let rdCorrectSound = Phaser.Math.Between(0, 2);
-			switch(rdCorrectSound) {
+			//let rdCorrectSound = Phaser.Math.Between(0, 2);
+			switch(countFault) {
 				case 0: 
 					this.awesomeSound.play();
 					break;
 				case 1:
 					this.goodJobSound.play();
 					break;
-				case 2:
+				default:
 					this.greatJobSound.play();
 					break;
 			}
@@ -342,7 +360,7 @@ class Scene1 extends Phaser.Scene {
 				targets: this.car,
 				x: window.innerWidth*1.1,
 				ease: 'Power1',
-				delay: 800,
+				delay: 500,
 				duration: 1000
 			})
 

@@ -13,6 +13,8 @@ let shakeHenEnable = [];
 let shakeRatelEnable = [];
 let spinHenEnable = [];
 let spinRatelEnable = [];
+// let countObject = 0;
+// let countFault = 0;
 
 class Scene2 extends Phaser.Scene {
     constructor() {
@@ -141,7 +143,7 @@ class Scene2 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.35 - countHenInBasket*100,
+							x: window.innerWidth*0.25 + countHenInBasket*100,
 							y: window.innerHeight*0.36,
 							ease: 'Power0',
 							duration: 500
@@ -149,12 +151,13 @@ class Scene2 extends Phaser.Scene {
 						this.spinObject = this.time.addEvent({
 							delay: 1050,
 							callback: () => {
-								spinHenEnable[i] = false;
-								
+								spinHenEnable[i] = false;	
 							},
 							loop: false
 						})
 						countHenInBasket++;
+						if (countHenInBasket == 3) countHenInBasket = -1;
+						countObject++;
 						this.tipsBear.play('right');
 						shakeHenEnable[i] = false;
 						this.correctSound.play();
@@ -190,6 +193,7 @@ class Scene2 extends Phaser.Scene {
 								this.audioRequest.play();
 							}
 						})
+						countFault++;
 					}
 				}
 				console.log('Location : basket');
@@ -206,7 +210,7 @@ class Scene2 extends Phaser.Scene {
 						}
 						this.tweens.add({
 							targets: this.dragObject,
-							x: window.innerWidth*0.5 + countRatelInFence*100,
+							x: window.innerWidth*0.6 + countRatelInFence*100,
 							y: window.innerHeight*0.38,
 							ease: 'Power0',
 							duration: 500
@@ -219,6 +223,8 @@ class Scene2 extends Phaser.Scene {
 							loop: false
 						})
 						countRatelInFence++;
+						if (countRatelInFence == 3) countRatelInFence = -1;
+						countObject++;
 						this.tipsBear.play('right');
 						shakeRatelEnable[i] = false;
 						this.correctSound.play();
@@ -254,6 +260,7 @@ class Scene2 extends Phaser.Scene {
 								this.audioRequest.play();
 							}
 						})
+						countFault++;
 					}
 				}
 				console.log('Location : fence');
@@ -313,20 +320,22 @@ class Scene2 extends Phaser.Scene {
 		shakeRatelEnable = [];
 		spinHenEnable = [];
 		spinRatelEnable = [];
+		countObject = 0;
+		countFault = 0;
 	}
 
 	checkFinish() {
-		if ((countHenInBasket + countRatelInFence) == 5) {
+		if (countObject == totalObject) {
 			this.correctChimeSound.play();
-			let rdCorrectSound = Phaser.Math.Between(0, 2);
-			switch(rdCorrectSound) {
+			// let rdCorrectSound = Phaser.Math.Between(0, 2);
+			switch(countFault) {
 				case 0: 
 					this.awesomeSound.play();
 					break;
 				case 1:
 					this.goodJobSound.play();
 					break;
-				case 2:
+				default:
 					this.greatJobSound.play();
 					break;
 			}
@@ -343,7 +352,7 @@ class Scene2 extends Phaser.Scene {
 				targets: this.car,
 				x: window.innerWidth*1.1,
 				ease: 'Power1',
-				delay: 800,
+				delay: 500,
 				duration: 1000
 			})
 			this.changeScene = this.time.addEvent({
