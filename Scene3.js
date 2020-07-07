@@ -79,7 +79,7 @@ class Scene3 extends Phaser.Scene {
         graphics.fillCircle(window.innerWidth-20, window.innerHeight-20, 250);
         graphics.lineStyle(3, 0xf6f2d3, 1);
         graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
-		this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-190, 'tipsBear');
+		this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-185, 'tipsBear');
 		this.anims.create({
 			key: 'talk',
 			frames: this.anims.generateFrameNumbers('beartalk'),
@@ -131,8 +131,8 @@ class Scene3 extends Phaser.Scene {
 
     checkResult() {
 		if (this.dragObject != null) {
-			if (this.dragObject.x > window.innerWidth*0.22 && this.dragObject.x < window.innerWidth*0.22+261 
-				&& this.dragObject.y > window.innerHeight*0.08 && this.dragObject.y < window.innerHeight*0.08+283) {
+			if (this.dragObject.x > window.innerWidth*0.22-50 && this.dragObject.x < window.innerWidth*0.22+261+50 
+				&& this.dragObject.y > window.innerHeight*0.08-50 && this.dragObject.y < window.innerHeight*0.08+283+50) {
 				for (let i=0; i<numbersOfDroplets; ++i) {
 					if (this.dragObject == droplets[i]) {
 						console.log('Status : correct');
@@ -198,8 +198,8 @@ class Scene3 extends Phaser.Scene {
 				}
 				console.log('Location : umbrella');
 			}
-			else if (this.dragObject.x > window.innerWidth*0.55 && this.dragObject.x < window.innerWidth*0.55+340 
-				&& this.dragObject.y > window.innerHeight*0.24 && this.dragObject.y < window.innerHeight*0.24+193) {
+			else if (this.dragObject.x > window.innerWidth*0.55-50 && this.dragObject.x < window.innerWidth*0.55+340+50 
+				&& this.dragObject.y > window.innerHeight*0.24-50 && this.dragObject.y < window.innerHeight*0.24+193+50) {
 				for (let i=0; i<numbersOfBoat; ++i) {
 					if (this.dragObject == boat[i]) {
 						console.log('Status : correct');

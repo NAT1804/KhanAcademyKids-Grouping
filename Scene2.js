@@ -13,8 +13,6 @@ let shakeHenEnable = [];
 let shakeRatelEnable = [];
 let spinHenEnable = [];
 let spinRatelEnable = [];
-// let countObject = 0;
-// let countFault = 0;
 
 class Scene2 extends Phaser.Scene {
     constructor() {
@@ -39,6 +37,14 @@ class Scene2 extends Phaser.Scene {
 		this.basket = this.add.image(window.innerWidth*0.22, window.innerHeight*0.1, 'basket').setOrigin(0, 0).setScale(0.7);
 		this.fence = this.add.image(window.innerWidth*0.55, window.innerHeight*0.22, 'fence').setOrigin(0, 0).setScale(0.7);
 		
+		// var rect1 = new Phaser.Geom.Rectangle(window.innerWidth*0.22-50, window.innerHeight*0.1-50, 232+50, 283+50);
+		// var rect2 = new Phaser.Geom.Rectangle(window.innerWidth*0.55-50, window.innerHeight*0.22-50, 283+50, 183+50);
+		// var graphics = this.add.graphics();
+		// graphics.lineStyle(5, 0x000000, 0.6);
+		// graphics.strokeRectShape(rect1);
+		// graphics.lineStyle(5, 0x000000, 0.6);
+		// graphics.strokeRectShape(rect2);
+
 		//sound
 		this.appearSound = this.sound.add('item_appear');
 		this.correctSound = this.sound.add('correct_sound');
@@ -79,7 +85,7 @@ class Scene2 extends Phaser.Scene {
         graphics.fillCircle(window.innerWidth-20, window.innerHeight-20, 250);
         graphics.lineStyle(3, 0xf6f2d3, 1);
         graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
-        this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-190, 'tipsBear');
+        this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-185, 'tipsBear');
 		this.anims.create({
 			key: 'talk',
 			frames: this.anims.generateFrameNumbers('beartalk'),
@@ -131,8 +137,8 @@ class Scene2 extends Phaser.Scene {
 
     checkResult() {
 		if (this.dragObject != null) {
-			if (this.dragObject.x > window.innerWidth*0.22 && this.dragObject.x < window.innerWidth*0.22+232 
-				&& this.dragObject.y > window.innerHeight*0.08 && this.dragObject.y < window.innerHeight*0.08+283) {
+			if (this.dragObject.x > window.innerWidth*0.22-50 && this.dragObject.x < window.innerWidth*0.22+232+50 
+				&& this.dragObject.y > window.innerHeight*0.08-50 && this.dragObject.y < window.innerHeight*0.08+283+50) {
 				for (let i=0; i<numbersOfHen; ++i) {
 					if (this.dragObject == hen[i]) {
 						console.log('Status : correct');
@@ -198,8 +204,8 @@ class Scene2 extends Phaser.Scene {
 				}
 				console.log('Location : basket');
 			}
-			else if (this.dragObject.x > window.innerWidth*0.55 && this.dragObject.x < window.innerWidth*0.55+283 
-				&& this.dragObject.y > window.innerHeight*0.2 && this.dragObject.y < window.innerHeight*0.2+183) {
+			else if (this.dragObject.x > window.innerWidth*0.55-50 && this.dragObject.x < window.innerWidth*0.55+283+50 
+				&& this.dragObject.y > window.innerHeight*0.2-50 && this.dragObject.y < window.innerHeight*0.2+183+50) {
 				for (let i=0; i<numbersOfRatel; ++i) {
 					if (this.dragObject == ratel[i]) {
 						console.log('Status : correct');

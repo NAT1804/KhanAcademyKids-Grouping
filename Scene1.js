@@ -39,13 +39,13 @@ class Scene1 extends Phaser.Scene {
 		this.stable = this.add.image(window.innerWidth*0.22, window.innerHeight*0.1, 'stable').setOrigin(0, 0).setScale(0.7);
 		this.iceHouse = this.add.image(window.innerWidth*0.55, window.innerHeight*0.12, 'ice_house').setOrigin(0, 0).setScale(0.7);
 
-		var rect1 = new Phaser.Geom.Rectangle(window.innerWidth*0.22, window.innerHeight*0.1, 200, 100);
-		var rect2 = new Phaser.Geom.Rectangle(window.innerWidth*0.55, window.innerHeight*0.12, 200, 100);
-		var graphics = this.add.graphics();
-		graphics.lineStyle(5, 0x000000, 0.8);
-		graphics.strokeRectShape(rect1);
-		graphics.lineStyle(5, 0x000000, 0.8);
-		graphics.strokeRectShape(rect2);
+		// var rect1 = new Phaser.Geom.Rectangle(window.innerWidth*0.22, window.innerHeight*0.1, 283, 226);
+		// var rect2 = new Phaser.Geom.Rectangle(window.innerWidth*0.55, window.innerHeight*0.12, 286, 204);
+		// var graphics = this.add.graphics();
+		// graphics.lineStyle(5, 0x000000, 0.6);
+		// graphics.strokeRectShape(rect1);
+		// graphics.lineStyle(5, 0x000000, 0.6);
+		// graphics.strokeRectShape(rect2);
 		
 		//sound
 		this.appearSound = this.sound.add('item_appear');
@@ -139,8 +139,8 @@ class Scene1 extends Phaser.Scene {
 
 	checkResult() {
 		if (this.dragObject != null) {
-			if (this.dragObject.x > window.innerWidth*0.22 && this.dragObject.x < window.innerWidth*0.22+283 
-				&& this.dragObject.y > window.innerHeight*0.08 && this.dragObject.y < window.innerHeight*0.08+226) {
+			if (this.dragObject.x > window.innerWidth*0.22-50 && this.dragObject.x < window.innerWidth*0.22+283+50 
+				&& this.dragObject.y > window.innerHeight*0.08-50 && this.dragObject.y < window.innerHeight*0.08+226+50) {
 				for (let i=0; i<numbersOfHorse; ++i) {
 					if (this.dragObject == horse[i]) {
 						console.log('Status : correct');
@@ -206,8 +206,8 @@ class Scene1 extends Phaser.Scene {
 				}
 				console.log('Location : stable');
 			}
-			else if (this.dragObject.x > window.innerWidth*0.55 && this.dragObject.x < window.innerWidth*0.55+286 
-				&& this.dragObject.y > window.innerHeight*0.1 && this.dragObject.y < window.innerHeight*0.1+204) {
+			else if (this.dragObject.x > window.innerWidth*0.55-50 && this.dragObject.x < window.innerWidth*0.55+286+50 
+				&& this.dragObject.y > window.innerHeight*0.1-50 && this.dragObject.y < window.innerHeight*0.1+204+50) {
 				for (let i=0; i<numbersOfPenguin; ++i) {
 					if (this.dragObject == penguin[i]) {
 						console.log('Status : correct');

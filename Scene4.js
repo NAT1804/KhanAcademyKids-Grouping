@@ -76,7 +76,7 @@ class Scene4 extends Phaser.Scene {
         graphics.fillCircle(window.innerWidth-20, window.innerHeight-20, 250);
         graphics.lineStyle(3, 0xf6f2d3, 1);
         graphics.strokeCircle(window.innerWidth-20, window.innerHeight-20, 250);
-		this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-190, 'tipsBear');
+		this.tipsBear1 = this.add.image(window.innerWidth-120, window.innerHeight-185, 'tipsBear');
 		this.anims.create({
 			key: 'talk',
 			frames: this.anims.generateFrameNumbers('beartalk'),
@@ -128,8 +128,8 @@ class Scene4 extends Phaser.Scene {
 
     checkResult() {
 		if (this.dragObject != null) {
-			if (this.dragObject.x > window.innerWidth*0.22 && this.dragObject.x < window.innerWidth*0.22+427 
-				&& this.dragObject.y > window.innerHeight*0.08 && this.dragObject.y < window.innerHeight*0.08+261) {
+			if (this.dragObject.x > window.innerWidth*0.22-50 && this.dragObject.x < window.innerWidth*0.22+427+50 
+				&& this.dragObject.y > window.innerHeight*0.08-50 && this.dragObject.y < window.innerHeight*0.08+261+50) {
 				for (let i=0; i<numbersOfBear; ++i) {
 					if (this.dragObject == bear[i]) {
 						console.log('Status : correct');
@@ -194,8 +194,8 @@ class Scene4 extends Phaser.Scene {
 				}
 				console.log('Location : tent');
 			}
-			else if (this.dragObject.x > window.innerWidth*0.57 && this.dragObject.x < window.innerWidth*0.57+284 
-				&& this.dragObject.y > window.innerHeight*0.22 && this.dragObject.y < window.innerHeight*0.22+166) {
+			else if (this.dragObject.x > window.innerWidth*0.57-50 && this.dragObject.x < window.innerWidth*0.57+284+50 
+				&& this.dragObject.y > window.innerHeight*0.22-50 && this.dragObject.y < window.innerHeight*0.22+166+50) {
 				for (let i=0; i<numbersOfBucket; ++i) {
 					if (this.dragObject == bucket[i]) {
 						console.log('Status : correct');
